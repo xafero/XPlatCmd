@@ -2,7 +2,7 @@
   "profiles": {
     "hash_me": {
       "commandName": "Project",
-      "commandLineArgs": "--hash -i $HOME/Desktop/mfjm"
+      "commandLineArgs": "--hash -i %HOME%/Desktop/mfjm"
     }
   }
 }
