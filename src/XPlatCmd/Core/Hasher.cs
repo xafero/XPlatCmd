@@ -31,11 +31,13 @@ namespace XPlatCmd.Core
 
             CsvTool.ToFile(cFile, results.OrderBy(x => x.Name)
                 .ThenBy(x => x.Size)
+                .ThenBy(x => x.Md5)
                 .ThenBy(x => x.Folder)
             );
 
             JsonTool.ToFile(jFile, results.OrderBy(x => x.Name)
                 .ThenBy(x => x.Size)
+                .ThenBy(x => x.Md5)
                 .ThenBy(x => x.Folder)
                 .GroupBy(x => x.Md5)
                 .ToDictionary(x => x.Key, v => v)
