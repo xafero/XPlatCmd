@@ -1,2 +1,4 @@
 <Solution>
+  <Project Path="XPlatCmd.Lib/XPlatCmd.Lib.csproj" />
+  <Project Path="XPlatCmd/XPlatCmd.csproj" />
 </Solution>
