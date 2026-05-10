@@ -25,8 +25,12 @@ namespace XPlatCmd.Lib
             md5.TransformFinalBlock([], 0, 0);
             sha256.TransformFinalBlock([], 0, 0);
 
+            var fileDir = Path.GetDirectoryName(filePath) ?? ".";
+            var fileName = Path.GetFileName(filePath);
+
             return new HashResult(
-                filePath,
+                fileDir,
+                fileName,
                 size,
                 Convert.ToHexString(md5.Hash!).ToLowerInvariant(),
                 Convert.ToHexString(sha256.Hash!).ToLowerInvariant()

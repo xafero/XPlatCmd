@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using XPlatCmd.Lib;
 
@@ -24,10 +25,11 @@ namespace XPlatCmd.Core
             {
                 if (file.Equals(cFile) || file.Equals(jFile)) continue;
                 var hash = Hashing.Compute(file);
-                Console.WriteLine($" * {hash.Md5,12} {hash.Size,8} {hash.Path}");
+                Console.WriteLine($" * {hash.Md5,12} {hash.Size,8} {file}");
                 results.Add(hash);
             }
 
+            results = results.OrderBy(x => x.Path()).ToList();
             CsvTool.ToFile(cFile, results);
             JsonTool.ToFile(jFile, results);
 
