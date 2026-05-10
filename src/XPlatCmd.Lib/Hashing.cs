@@ -12,12 +12,14 @@ namespace XPlatCmd.Lib
             using var sha256 = SHA256.Create();
             using var stream = File.OpenRead(filePath);
 
+            var size = 0;
             var buffer = new byte[buffSize];
             int bytesRead;
             while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
             {
                 md5.TransformBlock(buffer, 0, bytesRead, null, 0);
                 sha256.TransformBlock(buffer, 0, bytesRead, null, 0);
+                size += bytesRead;
             }
 
             md5.TransformFinalBlock([], 0, 0);
@@ -25,6 +27,7 @@ namespace XPlatCmd.Lib
 
             return new HashResult(
                 filePath,
+                size,
                 Convert.ToHexString(md5.Hash!).ToLowerInvariant(),
                 Convert.ToHexString(sha256.Hash!).ToLowerInvariant()
             );

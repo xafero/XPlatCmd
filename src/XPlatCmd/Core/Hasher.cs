@@ -7,7 +7,7 @@ namespace XPlatCmd.Core
 {
     public static class Hasher
     {
-        public static async Task Run(Options o)
+        public static Task Run(Options o)
         {
             var root = Files.GetFullDir(o.InputDir);
             Console.WriteLine($"Scanning => {root}");
@@ -16,10 +16,11 @@ namespace XPlatCmd.Core
             foreach (var file in Directory.EnumerateFiles(root, "*.*", so))
             {
                 var hash = Hashing.Compute(file);
-                Console.WriteLine(hash);
+                Console.WriteLine($" * {hash.Md5,12} {hash.Size,8} {hash.Path}");
             }
 
             Console.WriteLine("Done.");
+            return Task.CompletedTask;
         }
     }
 }
