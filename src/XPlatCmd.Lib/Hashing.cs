@@ -29,11 +29,11 @@ namespace XPlatCmd.Lib
             var fileName = Path.GetFileName(filePath);
 
             return new HashResult(
+                fileDir,
                 fileName,
                 size,
                 Convert.ToHexString(md5.Hash!).ToLowerInvariant(),
-                Convert.ToHexString(sha256.Hash!).ToLowerInvariant(),
-                fileDir
+                Convert.ToHexString(sha256.Hash!).ToLowerInvariant()
             );
         }
     }
