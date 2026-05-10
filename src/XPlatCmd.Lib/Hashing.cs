@@ -24,6 +24,7 @@ namespace XPlatCmd.Lib
             sha256.TransformFinalBlock([], 0, 0);
 
             return new HashResult(
+                filePath,
                 Convert.ToHexString(md5.Hash!).ToLowerInvariant(),
                 Convert.ToHexString(sha256.Hash!).ToLowerInvariant()
             );
