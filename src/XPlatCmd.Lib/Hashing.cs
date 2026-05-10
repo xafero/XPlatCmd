@@ -1,10 +1,12 @@
+using System;
+using System.IO;
 using System.Security.Cryptography;
 
 namespace XPlatCmd.Lib
 {
     public static class Hashing
     {
-        public static HashResult ComputeHashes(string filePath, int buffSize = 80 * 1024)
+        public static HashResult Compute(string filePath, int buffSize = 80 * 1024)
         {
             using var md5 = MD5.Create();
             using var sha256 = SHA256.Create();
