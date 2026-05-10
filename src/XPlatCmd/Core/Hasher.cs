@@ -29,9 +29,17 @@ namespace XPlatCmd.Core
                 results.Add(hash);
             }
 
-            results = results.OrderBy(x => x.Path()).ToList();
-            CsvTool.ToFile(cFile, results);
-            JsonTool.ToFile(jFile, results);
+            CsvTool.ToFile(cFile, results.OrderBy(x => x.Name)
+                .ThenBy(x => x.Size)
+                .ThenBy(x => x.Folder)
+            );
+
+            JsonTool.ToFile(jFile, results.OrderBy(x => x.Name)
+                .ThenBy(x => x.Size)
+                .ThenBy(x => x.Folder)
+                .GroupBy(x => x.Md5)
+                .ToDictionary(x => x.Key, v => v)
+            );
 
             Console.WriteLine($"Done with {results.Count} files.");
             return Task.CompletedTask;

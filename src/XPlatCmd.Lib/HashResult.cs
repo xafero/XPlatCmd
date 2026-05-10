@@ -1,11 +1,13 @@
-﻿namespace XPlatCmd.Lib
+﻿// ReSharper disable NotAccessedPositionalProperty.Global
+
+namespace XPlatCmd.Lib
 {
     public record HashResult(
-        string Folder,
         string Name,
         int Size,
         string Md5,
-        string Sha256
+        string Sha256,
+        string Folder
     )
     {
         public string Path() => $"{Folder}|{Name}";
